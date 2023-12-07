@@ -2,7 +2,7 @@ import Product from "../Product";
 
 export const Home = () => {
   let featuredProduct = Math.floor(Math.random() * 20);
-  console.log(featuredProduct);
+  // console.log(featuredProduct);
   return (
     <>
       {/* <h1>Home</h1> */}

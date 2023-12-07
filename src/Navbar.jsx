@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 // import React from "react";
 
-export const Navbar = () => {
+export const Navbar = ({ cartItems }) => {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
@@ -16,9 +17,13 @@ export const Navbar = () => {
           <Link to="/about">About</Link>
         </li>
         <li>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">Cart ({cartItems})</Link>
         </li>
       </ul>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  cartItems: PropTypes.number,
 };
