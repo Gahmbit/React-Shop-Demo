@@ -2,26 +2,32 @@
 
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+// import { useCartItems } from "./CartManager";
 
 const Product = ({
   productID,
-  isPage,
+  isCart,
   className = "productContainer",
   setAddToCart,
+  setRemoveCart,
   quantity,
   id,
 }) => {
-  console.log(quantity);
+  // console.log(quantity);
   const [product, setProduct] = useState(null);
+  // const { setRemoveCart } = useCartItems();
+  // console.log(setRemoveCart);
+
   // const setAddToCart = props.setAddToCart;
   useEffect(() => {
+    // console.log(productID);
     fetch(`https://fakestoreapi.com/products/${productID}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
       })
       .catch((error) => console.log(error));
-  }, [productID, isPage]);
+  }, [productID, isCart]);
 
   return product ? (
     <div className={className} id={id}>
@@ -34,7 +40,9 @@ const Product = ({
         ) : null}
       </span>
       {quantity ? <p>{quantity} in cart</p> : null}
-      {isPage ? <p>{product.description}</p> : null}
+      {isCart ? (
+        <button onClick={() => setRemoveCart(productID)}>Remove</button>
+      ) : null}
     </div>
   ) : (
     <h1>THIS SH*T BROKEN FAM, PLEASE WAIT!</h1>
@@ -43,9 +51,10 @@ const Product = ({
 
 Product.propTypes = {
   productID: PropTypes.number,
-  isPage: PropTypes.bool,
+  isCart: PropTypes.bool,
   className: PropTypes.string,
   setAddToCart: PropTypes.func,
+  setRemoveCart: PropTypes.func,
   quantity: PropTypes.number,
   id: PropTypes.number,
 };

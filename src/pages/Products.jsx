@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Product from "../Product";
 // import { Navbar } from "../Navbar";
 
-const Products = ({ setAddToCart }) => {
+const Products = ({ setAddToCart, setRemoveCart }) => {
   const myProducts = [];
 
   for (let i = 1; i <= 20; i++) {
@@ -13,9 +13,11 @@ const Products = ({ setAddToCart }) => {
         isPage={false}
         className="smallerProducts"
         setAddToCart={setAddToCart}
+        setRemoveCart={setRemoveCart}
       />
     );
   }
+  // console.log(setRemoveCart);
 
   // console.log(myProducts);
 
@@ -29,6 +31,7 @@ const Products = ({ setAddToCart }) => {
 
 Products.propTypes = {
   setAddToCart: PropTypes.func,
+  setRemoveCart: PropTypes.func,
 };
 
 export default Products;
