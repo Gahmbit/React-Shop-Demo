@@ -7,9 +7,13 @@ const Product = ({
   productID,
   isPage,
   className = "productContainer",
-  setUpdateCart,
+  setAddToCart,
+  quantity,
+  id,
 }) => {
+  console.log(quantity);
   const [product, setProduct] = useState(null);
+  // const setAddToCart = props.setAddToCart;
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${productID}`)
       .then((res) => res.json())
@@ -20,19 +24,16 @@ const Product = ({
   }, [productID, isPage]);
 
   return product ? (
-    <div className={className}>
+    <div className={className} id={id}>
       <img src={product.image} alt={product.title} />
       <h2>{product.title}</h2>
       <span>
         <h3>${product.price}</h3>
-        <button
-          onClick={() => {
-            return setUpdateCart(1);
-          }}
-        >
-          Add To Cart
-        </button>
+        {setAddToCart ? (
+          <button onClick={() => setAddToCart(productID)}>Add To Cart</button>
+        ) : null}
       </span>
+      {quantity ? <p>{quantity} in cart</p> : null}
       {isPage ? <p>{product.description}</p> : null}
     </div>
   ) : (
@@ -44,7 +45,9 @@ Product.propTypes = {
   productID: PropTypes.number,
   isPage: PropTypes.bool,
   className: PropTypes.string,
-  setUpdateCart: PropTypes.func,
+  setAddToCart: PropTypes.func,
+  quantity: PropTypes.number,
+  id: PropTypes.number,
 };
 
 export default Product;

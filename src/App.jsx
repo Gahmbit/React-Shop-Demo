@@ -10,7 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import { useCartItems } from "./CartManager";
 
 export const App = () => {
-  const { cartItems, setUpdateCart } = useCartItems();
+  const { cartItems, setAddToCart } = useCartItems();
   return (
     <>
       <Navbar cartItems={cartItems} />
@@ -18,10 +18,10 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart cartItems={cartItems} />} />
           <Route
             path="/products"
-            element={<Products setUpdateCart={setUpdateCart} />}
+            element={<Products setAddToCart={setAddToCart} />}
           />
           <Route path="*" element={<Error />} />
         </Routes>

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 // import React from "react";
 
 export const Navbar = ({ cartItems }) => {
+  // console.log(cartItems);
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
@@ -17,7 +18,7 @@ export const Navbar = ({ cartItems }) => {
           <Link to="/about">About</Link>
         </li>
         <li>
-          <Link to="/cart">Cart ({cartItems})</Link>
+          <Link to="/cart">Cart ({cartItems.length})</Link>
         </li>
       </ul>
     </nav>
@@ -25,5 +26,5 @@ export const Navbar = ({ cartItems }) => {
 };
 
 Navbar.propTypes = {
-  cartItems: PropTypes.number,
+  cartItems: PropTypes.array,
 };
